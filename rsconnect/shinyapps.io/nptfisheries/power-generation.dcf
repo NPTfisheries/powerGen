@@ -1,0 +1,11 @@
+name: power-generation
+title:
+username:
+account: nptfisheries
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9188563
+bundleId: 7264360
+url: https://nptfisheries.shinyapps.io/power-generation/
+when: 1685049676.1001
+lastSyncTime: 1685049676.1001
