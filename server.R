@@ -40,10 +40,10 @@ shinyServer(function(input, output) {
             color = ~stat,
             colors = viridis_pal(option="D", begin=0.2, end=0.8)(length(unique(summary_df()$stat)))
     ) %>%
-      layout(title = list(text = paste0(input$project_input, ' Dam ', title_span, ' Power Generation'),
+      layout(title = list(text = paste0(input$project_input, ' Dam Hourly Power Generation (', title_span, ' Timestep)'),
                           font = list(size = main_title),
                           y = 0.98),
-             yaxis = list(title= paste(title_span, 'Power Generation (MW)'),
+             yaxis = list(title= 'Hourly Power Generation (MW)',
                           titlefont = list(size = axis_titles), 
                           tickfont = list(size = axis_labels)),
              xaxis = list(title= 'Date',
