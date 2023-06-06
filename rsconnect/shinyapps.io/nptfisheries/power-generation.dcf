@@ -5,7 +5,7 @@ account: nptfisheries
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 9188563
-bundleId: 7311155
+bundleId: 7311291
 url: https://nptfisheries.shinyapps.io/power-generation/
-when: 1686056763.84432
-lastSyncTime: 1686056763.84432
+when: 1686058746.15051
+lastSyncTime: 1686058746.15051

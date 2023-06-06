@@ -53,7 +53,7 @@ shinyServer(function(input, output) {
                           ),
              legend = list(font = list(size = legend_text)),
              showlegend = TRUE,
-             margin = list(b = 0, l = 80, r = 0, t = 55)
+             margin = list(b = 30, l = 110, r = 30, t = 85)
              )
   })
   
