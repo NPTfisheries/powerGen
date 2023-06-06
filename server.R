@@ -45,11 +45,15 @@ shinyServer(function(input, output) {
                           y = 0.98),
              yaxis = list(title= 'Hourly Power Generation (MW)',
                           titlefont = list(size = axis_titles), 
-                          tickfont = list(size = axis_labels)),
+                          tickfont = list(size = axis_labels),
+                          range = c(-15, max(summary_df()$value)*1.03)),
              xaxis = list(title= 'Date',
                           titlefont = list(size = axis_titles), 
-                          tickfont = list(size = axis_labels)),
-             margin = list(b = 30, l = 30, r = 30, t = 50)
+                          tickfont = list(size = axis_labels)
+                          ),
+             legend = list(font = list(size = legend_text)),
+             showlegend = TRUE,
+             margin = list(b = 0, l = 80, r = 0, t = 55)
              )
   })
   

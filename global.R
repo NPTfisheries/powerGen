@@ -13,3 +13,4 @@ projects = c('Lower Granite', 'Little Goose', 'Lower Monumental', 'Ice Harbor', 
 main_title = 34
 axis_titles = 26
 axis_labels = 22
+legend_text = 18
