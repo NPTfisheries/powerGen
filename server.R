@@ -26,6 +26,25 @@ shinyServer(function(input, output) {
       
   })
   
+  # this dynamically builds a color palette to make sure plotly shows the lines
+  # of the same stat always as the same color
+  line_colors <- reactive({
+    colors <- character(0)
+    if('min' %in% input$stat_input){colors <- c(colors, color_palette[[1]])}
+    if('mean' %in% input$stat_input){colors <- c(colors, color_palette[[2]])}
+    if('max' %in% input$stat_input){colors <- c(colors, color_palette[[3]])}
+    if('diff_max_min' %in% input$stat_input){colors <- c(colors, color_palette[[4]])}
+    if('diff_max_mean' %in% input$stat_input){colors <- c(colors, color_palette[[5]])}
+    
+    return(colors)
+  })
+  
+  # observe({
+  #   cat(grepl('min', input$stat_input), '\n')
+  #   cat("input$stat_input changed to:", input$stat_input, "\n")
+  #   cat("line colors is now", line_colors(), '\n')
+  # })
+  
   output$power_plot2<- renderPlotly({
     
     shiny::validate(
@@ -49,8 +68,7 @@ shinyServer(function(input, output) {
             mode = 'lines',  # lines+markers
             # linetype = ~stat,
             color = ~stat,
-            # colors = viridis_pal(option="D", begin=0.2, end=0.8)(length(unique(summary_df()$stat)))
-            colors = ~line_color
+            colors = ~line_colors()
     ) %>%
       layout(title = list(text = paste0(input$project_input, ' Dam (', title_span, ' Timestep)'),
                           font = list(size = main_title),
