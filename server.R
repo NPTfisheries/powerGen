@@ -10,7 +10,18 @@ shinyServer(function(input, output) {
                 max = max(power_mw),
                 n = n()) %>%
       select(name, everything()) %>%
-      pivot_longer(cols = c(min, mean, max), names_to = 'stat') %>%
+      mutate(
+        diff_max_min = max - min,
+        diff_max_mean = max - mean
+      ) %>%
+      pivot_longer(cols = c(min, mean, max, diff_max_min, diff_max_mean), names_to = 'stat') %>%
+      mutate(line_color = case_when(
+        stat == 'min' ~ color_palette[[5]],
+        stat == 'max' ~ color_palette[[1]],
+        stat == 'mean' ~ color_palette[[3]],
+        stat == 'diff_max_min' ~ color_palette[[4]],
+        stat == 'diff_max_mean' ~ color_palette[[2]],
+      )) %>%
       filter(stat %in% input$stat_input)
       
   })
@@ -38,7 +49,8 @@ shinyServer(function(input, output) {
             mode = 'lines',  # lines+markers
             # linetype = ~stat,
             color = ~stat,
-            colors = viridis_pal(option="D", begin=0.2, end=0.8)(length(unique(summary_df()$stat)))
+            # colors = viridis_pal(option="D", begin=0.2, end=0.8)(length(unique(summary_df()$stat)))
+            colors = ~line_color
     ) %>%
       layout(title = list(text = paste0(input$project_input, ' Dam (', title_span, ' Timestep)'),
                           font = list(size = main_title),
@@ -53,7 +65,8 @@ shinyServer(function(input, output) {
                           ),
              legend = list(font = list(size = legend_text)),
              showlegend = TRUE,
-             margin = list(b = 30, l = 110, r = 30, t = 85)
+             margin = list(b = 30, l = 110, r = 30, t = 85)#,
+             # hovermode = 'x unified'
              )
   })
   

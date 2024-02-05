@@ -14,3 +14,6 @@ main_title = 34
 axis_titles = 26
 axis_labels = 22
 legend_text = 18
+
+# colors for lines
+color_palette <- viridis(n = 5, begin = 0.1, end = 0.8)

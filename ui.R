@@ -42,7 +42,9 @@ shinyUI(
                                              label = h3('Statistics:'),
                                              choices = c('Minimum' = 'min', 
                                                          'Mean' = 'mean', 
-                                                         'Maximum' = 'max'),
+                                                         'Maximum' = 'max',
+                                                         'Difference (Max - Min)' = 'diff_max_min',
+                                                         'Difference (Max - Mean)' = 'diff_max_mean'),
                                              selected = 'mean', inline = FALSE),
                           # Timespan select
                           radioButtons(inputId = 'span_input',
